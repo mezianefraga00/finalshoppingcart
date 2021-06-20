@@ -21,12 +21,7 @@ class Fruits extends Component {
     return fruits;
   };
   render() {
-    return (
-      <>
-        {/* {this.fetchfruits()} */}
-        <ListItem data={this.state.fruits} getItem={this.props.getItem} />
-      </>
-    );
+    return <ListItem data={this.state.fruits} getItem={this.props.getItem} />;
   }
 }
 

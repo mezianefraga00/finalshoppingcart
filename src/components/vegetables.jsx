@@ -21,9 +21,7 @@ class Vegetables extends Component {
 
   render() {
     return (
-      <>
-        <ListItem data={this.state.vegetables} getItem={this.props.getItem} />
-      </>
+      <ListItem data={this.state.vegetables} getItem={this.props.getItem} />
     );
   }
 }
