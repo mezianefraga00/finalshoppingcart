@@ -11,7 +11,6 @@ class Price extends Component {
 
   render() {
     this.state.price.push(this.props.pricelement);
-    console.log("price", this.state.price[0]);
     return (
       <div>
         <div>

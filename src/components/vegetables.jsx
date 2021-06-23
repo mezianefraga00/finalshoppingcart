@@ -1,29 +1,20 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import ListItem from "./listItem";
 
-class Vegetables extends Component {
-  state = { vegetables: [] };
-  async componentDidMount() {
-    const vegetables = await this.fetchvegetables();
-    this.setState({ vegetables });
-  }
+const Vegetables = (props) => {
+  const [vegetables, setVegetables] = useState([]);
 
-  fetchvegetables = async () => {
+  useEffect(() => {
     let vegatables = [];
-    await fetch("http://localhost:3000/vegetablesAndFruits")
+    fetch("http://localhost:3000/vegetablesAndFruits")
       .then((response) => response.json())
       .then((listVegatables) => {
         vegatables = listVegatables.filter((li) => li.type.id === 1);
+        setVegetables(vegatables);
       });
+  }, []);
 
-    return vegatables;
-  };
-
-  render() {
-    return (
-      <ListItem data={this.state.vegetables} getItem={this.props.getItem} />
-    );
-  }
-}
+  return <ListItem data={vegetables} getItem={props.getItem} />;
+};
 
 export default Vegetables;
