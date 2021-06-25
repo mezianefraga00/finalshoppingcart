@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Cart from "./cart";
 import Grid from "./grid";
-
 const FruitsVeg = () => {
+  //// this.props.list.filter(u=>!u.friend).map(u=><li>{u.name}</li>)}
+
   const [cart, setCart] = useState([]);
 
   const handleAddQuantity = (item) => {
@@ -57,11 +58,22 @@ const FruitsVeg = () => {
         addItemToCart(item);
       });
   };
+  const handleDeleteItem = (myid) => {
+    let mycart = [...cart];
 
+    mycart = mycart.filter((mycart) => mycart.id !== myid);
+
+    setCart(mycart);
+  };
   return (
     <div className="App">
       <Grid getItem={getItem} />
-      <Cart onAdd={handleAddQuantity} onSub={handleSubQuantity} items={cart} />
+      <Cart
+        onAdd={handleAddQuantity}
+        onSub={handleSubQuantity}
+        items={cart}
+        onDelete={handleDeleteItem}
+      />
     </div>
   );
 };

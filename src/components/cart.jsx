@@ -2,6 +2,8 @@ import React from "react";
 import Card from "./quantity";
 import Price from "./price";
 import PriceTotal from "./pricetotal";
+import Checkout from "./checkout.jsx";
+
 const Cart = (props) => {
   const currentCart = props.items;
 
@@ -18,13 +20,13 @@ const Cart = (props) => {
                 <div className="py-2 text-uppercase">Quantity</div>
               </th>
               <th key="th-3" scope="col" className="border-0 bg-light">
-                <div className="py-2 text-uppercase">Price</div>
+                <div className="py-2 text-uppercase">Price/Item</div>
               </th>
               <th key="th-4" scope="col" className="border-0 bg-light">
-                <div className="py-2 text-uppercase">Price</div>
+                <div className="py-2 text-uppercase">Total</div>
               </th>
               <th key="th-5" scope="col" className="border-0 bg-light">
-                <div className="py-2 text-uppercase"></div>
+                <div className="py-2 text-uppercase"> </div>
               </th>
             </tr>
           </thead>
@@ -58,12 +60,19 @@ const Cart = (props) => {
                         number={ca.addQuatity}
                       />
                     </th>
+                    <th key={ca.id + "de"} scope="row" className="border-0">
+                      <button onClick={() => props.onDelete(ca.id)}>
+                        Delete
+                      </button>
+                    </th>
                   </tr>
                 </>
               );
             })}
           </tbody>
         </table>
+
+        <Checkout priceitem={currentCart} />
       </div>
     );
   }
